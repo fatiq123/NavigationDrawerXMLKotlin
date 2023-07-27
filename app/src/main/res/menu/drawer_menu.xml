@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/miPerson"
+            android:icon="@drawable/ic_profile"
+            android:title="Profile" />
+
+        <item
+            android:id="@+id/miChat"
+            android:icon="@drawable/ic_message"
+            android:title="Chat" />
+
+    </group>
+
+    <item android:title="Communicate">
+
+        <menu>
+
+            <item
+                android:id="@+id/miSend"
+                android:icon="@drawable/ic_send"
+                android:title="Send" />
+
+            <item
+                android:id="@+id/miShare"
+                android:icon="@drawable/ic_share"
+                android:title="Share" />
+
+        </menu>
+
+    </item>
+
+</menu>
