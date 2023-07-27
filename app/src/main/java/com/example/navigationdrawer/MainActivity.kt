@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 
 class MainActivity : AppCompatActivity() {
@@ -29,5 +30,15 @@ class MainActivity : AppCompatActivity() {
         drawer.addDrawerListener(toogle)
 
         toogle.syncState()
+    }
+
+    override fun onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START)
+        } else{
+            super.onBackPressed()
+        }
+
+
     }
 }
