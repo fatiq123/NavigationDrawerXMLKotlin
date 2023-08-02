@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         drawer = findViewById(R.id.drawer_layout)
 
         val toogle = ActionBarDrawerToggle(
-            this,
+            this@MainActivity,
             drawer,
             R.string.open,
             R.string.close
