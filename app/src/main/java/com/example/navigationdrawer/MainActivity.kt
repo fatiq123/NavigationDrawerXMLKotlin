@@ -8,6 +8,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.example.navigationdrawer.fragments.ChatFragment
 import com.example.navigationdrawer.fragments.ProfileFragment
 import com.google.android.material.navigation.NavigationView
@@ -39,58 +41,54 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragment_container, ProfileFragment())
-            .commit()
-        navigationView.setCheckedItem(R.id.miProfile)
+        changeFragment(ProfileFragment())   // by default it will display profile fragment
 
 
 
-
-        navigationView.setNavigationItemSelectedListener(object : NavigationView.OnNavigationItemSelectedListener{
-            override fun onNavigationItemSelected(item: MenuItem): Boolean {
-                when(item.itemId) {
-                    R.id.miProfile -> {
-                        supportFragmentManager
-                            .beginTransaction()
-                            .replace(R.id.fragment_container, ProfileFragment())
-                            .commit()
-                    }
-                    R.id.miChat -> {
-                        supportFragmentManager
-                            .beginTransaction()
-                            .replace(R.id.fragment_container, ChatFragment())
-                            .commit()
-                    }
-                    R.id.miSend -> {
-                        Toast.makeText(
-                            this@MainActivity,
-                            "Send Selected",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                    R.id.miShare -> {
-                        Toast.makeText(
-                            this@MainActivity,
-                            "Share Selected",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+        navigationView.setNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.miProfile -> {
+                    changeFragment(ProfileFragment())
                 }
-                drawer.closeDrawer(GravityCompat.START)
-                return true
-            }
 
-        })
+                R.id.miChat -> {
+                    changeFragment(ChatFragment())
+                }
+
+                R.id.miSend -> {
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Send Selected",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                R.id.miShare -> {
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Share Selected",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+            drawer.closeDrawer(GravityCompat.START)
+            true
+        }
 
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START)
-        } else{
+        } else {
             super.onBackPressed()
         }
+    }
+
+    private fun changeFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .commit()
     }
 }
