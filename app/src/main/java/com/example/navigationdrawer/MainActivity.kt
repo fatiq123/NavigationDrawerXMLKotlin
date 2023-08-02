@@ -20,16 +20,16 @@ class MainActivity : AppCompatActivity() {
 
         drawer = findViewById(R.id.drawer_layout)
 
-        val toogle = ActionBarDrawerToggle(
+        val toggle = ActionBarDrawerToggle(
             this@MainActivity,
             drawer,
             R.string.open,
             R.string.close
         )
 
-        drawer.addDrawerListener(toogle)
+        drawer.addDrawerListener(toggle)
 
-        toogle.syncState()
+        toggle.syncState()
     }
 
     override fun onBackPressed() {
@@ -38,7 +38,5 @@ class MainActivity : AppCompatActivity() {
         } else{
             super.onBackPressed()
         }
-
-
     }
 }
